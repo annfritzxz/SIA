@@ -5,77 +5,159 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Barbie World</title>
     <style>
+        /* General Styles */
+        html, body {
+            height: 100%; 
+            margin: 0;
+            display: flex;
+            flex-direction: column; /* Make the body a flex container */
+        }
         body {
             font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #ffe4e1;
+            background-color: #f8d1e6;
             color: #333;
+        }
+        a {
+            text-decoration: none;
+            color: inherit;
         }
         header {
             background-color: #ff69b4;
             color: white;
-            padding: 20px;
             text-align: center;
+            padding: 20px 0;
         }
+        h1 {
+            margin: 0;
+        }
+
+        /* Navigation Bar */
         nav {
+            background-color: #e0569a;
+            padding: 10px 0;
             text-align: center;
-            margin: 20px 0;
         }
         nav a {
-            text-decoration: none;
-            color: #ff69b4;
             margin: 0 15px;
+            color: white;
             font-weight: bold;
+            font-size: 16px;
+            transition: color 0.3s ease;
         }
         nav a:hover {
-            text-decoration: underline;
+            color: #ffd1e6;
         }
-        .container {
-            text-align: center;
+
+        /* Content Section */
+        .content {
             padding: 20px;
+            max-width: 800px;
+            margin: 20px auto;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            flex: 1; /* Allow the content to grow and push the footer down */
         }
-        .container img {
-            max-width: 100%;
+        .image {
+            width: 100%;
             height: auto;
-            border-radius: 10px;
+            border-radius: 8px;
+            display: none; /* Initially hidden */
+            transition: opacity 0.3s ease-in-out; /* Smooth transition */
         }
-        footer {
+        .image.show {
+            display: block;
+            opacity: 1;
+        }
+
+        /* Button Styles */
+        .btn {
+            display: block;
+            margin: 10px 0;
+            padding: 10px 15px;
             background-color: #ff69b4;
             color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+        .btn:hover {
+            background-color: #e0569a;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: #444;
+            color: #f8f8f8;
             text-align: center;
             padding: 10px 0;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 600px) {
+            .content {
+                padding: 15px;
+            }
+            .btn {
+                font-size: 14px;
+                padding: 8px 12px;
+            }
+            nav a {
+                font-size: 14px;
+                margin: 0 10px;
+            }
         }
     </style>
 </head>
 <body>
+
+    <!-- Header Section -->
     <header>
         <h1>Welcome to Barbie World</h1>
     </header>
+
+    <!-- Navigation Bar -->
     <nav>
         <a href="#about">About</a>
         <a href="#gallery">Gallery</a>
         <a href="#contact">Contact</a>
     </nav>
-    <div class="container" id="about">
+
+    <!-- Main Content -->
+    <div class="content" id="about">
+        <button class="btn" onclick="toggleImage()" aria-label="Toggle Barbie Image">Show Image</button>
+        <img src="\Users\annfr\Downloadsbarbie.jpg" alt="A Barbie doll" class="image" id="barbieImage">
         <h2>About Barbie</h2>
-        <p>Barbie is a fashion icon and a symbol of empowerment for generations. Explore her world of style, fun, and creativity!</p>
+        <p>Barbie is a fashion doll created by American businesswoman Ruth Handler, manufactured by American toy and entertainment company Mattel and introduced on March 9, 1959. 
+            The toy was based on the German Bild Lilli doll which Handler had purchased while in Europe. 
+            The figurehead of an eponymous brand that includes a range of fashion dolls and accessories, Barbie has been an important part of the toy fashion doll market for over six decades. 
+            Mattel has sold over a billion Barbie dolls, making it the company's largest and most profitable line. 
+            The brand has expanded into a multimedia franchise since 1984, including video games, animated films, television/web series, and a live-action film.</p>
     </div>
-    <div class="container" id="gallery">
-        <h2>Gallery</h2>
-        <img src="https://via.placeholder.com/600x400" alt="Barbie Image">
-        <p>Discover Barbie's latest adventures and styles.</p>
+
+    <!-- Footer Section -->
+    <div class="footer">
+        <p>&copy; 2025 Barbie World</p>
     </div>
-    <div class="container" id="contact">
-        <h2>Contact Us</h2>
-        <p>Email: barbieworld@example.com</p>
-        <p>Phone: +1-800-BARBIE</p>
-    </div>
-    <footer>
-        <p>&copy; 2023 Barbie World. All rights reserved.</p>
-    </footer>
+
+    <!-- JavaScript -->
+    <script defer>
+        function toggleImage() {
+            const image = document.getElementById("barbieImage");
+            const button = document.querySelector(".btn");
+            if (image.classList.contains("show")) {
+                image.classList.remove("show");
+                image.style.display = "none";
+                button.textContent = "Show Image";
+            } else {
+                image.style.display = "block";
+                setTimeout(() => image.classList.add("show"), 10); // Add class after display
+                button.textContent = "Hide Image";
+            }
+        }
+    </script>
+
 </body>
 </html>
